@@ -1,0 +1,194 @@
+<-CustomToggleButton@ToggleButton>
+    text_size: self.size
+    halign: "center"
+    valign: "center"
+    state: "normal"
+    # background_normal: ""
+    # background_down: ""
+    background_color: {"normal": app.colSecondary, "down": app.colPrimary} [self.state]
+    allow_no_selection: False
+    font_size: self.height / 4
+    canvas:
+        Color:
+            rgba: self.background_color
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15]
+        Color:
+            rgba: [1, 1, 1, 1]
+        Rectangle:
+            texture: self.texture
+            size: self.texture_size
+            pos: int(self.center_x - self.texture_size[0] / 2.), int(self.center_y - self.texture_size[1] / 2.)
+
+
+
+<CustomLabel@Label>
+    text_size: self.size
+    halign: "center"
+    valign: "center"
+    font_size: self.height / 4
+    background_color: 1, 1, 1, 1
+    canvas.before:
+        Color:
+            rgba: app.colSecondary
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+FloatLayout:
+    canvas.before:
+        Color:
+            rgba: app.colTertiary
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    
+    
+    Label:
+        pos_hint: {"center_x": 0.5, "top": 1}
+        size_hint: (1, 0.1)
+        text: "SousVideApp"
+        text_size: self.size
+        halign: "center"
+        valign: "center"
+        font_name: "Comic_Sans_MS"
+        font_size: self.height / 2
+        bold: True
+        canvas.before:
+            Color:
+                rgba: app.colPrimary
+            Rectangle:
+                pos: self.pos
+                size: self.size
+    
+    
+    GridLayout:
+        pos_hint: {"center_x": 0.5, "top": .86}
+        size_hint: (.96, 0.25)
+        rows: 2
+        cols: 2
+        spacing: 5
+        
+        CustomToggleButton:
+            text: "Poultry"
+            group: "meat"
+            on_press:
+                app.meat = self.text
+                app.UpdateScreen()
+
+        CustomToggleButton:
+            text: "Beef"
+            group: "meat"
+            state: "down"
+            on_press:
+                app.meat = self.text
+                app.UpdateScreen()
+        CustomToggleButton:
+            text: "Fish"
+            group: "meat"
+            on_press:
+                app.meat = self.text
+                app.UpdateScreen()
+        CustomToggleButton:
+            text: "Pork"
+            group: "meat"
+            on_press:
+                app.meat = self.text
+                app.UpdateScreen()
+    
+    
+    GridLayout:
+        pos_hint: {"center_x": 0.5, "top": .57}
+        size_hint: (.96, 0.1)
+        rows: 1
+        cols: 3
+        spacing: 5
+        
+        CustomToggleButton:
+            text: "Medium rare"
+            group: "doneness"
+            font_size: self.height / 4
+            state: "down"
+            on_press:
+                app.doneness = self.text
+                app.UpdateScreen()
+        CustomToggleButton:
+            text: "Medium"
+            group: "doneness"
+            font_size: self.height / 4
+            on_press:
+                app.doneness = self.text
+                app.UpdateScreen()
+        CustomToggleButton:
+            text: "Well done"
+            group: "doneness"
+            font_size: self.height / 4
+            on_press:
+                app.doneness = self.text
+                app.UpdateScreen()
+    
+    
+    GridLayout:
+        pos_hint: {"center_x": 0.5, "top": .43}
+        size_hint: (.96, 0.1)
+        rows: 2
+        cols: 1
+        spacing: 5
+        
+        Label:
+            text: app.PrintThickness(root.ids.slider_thickness.value)
+            text_size: self.size
+            halign: "center"
+            valign: "center"
+            size: self.size
+            font_size: self.height / 2
+        
+        Slider:
+            id: slider_thickness
+            orientation: "horizontal"
+            min: 1
+            max: 6
+            value: 3.5
+            step: .5
+            value_track: True
+            value_track_color: app.colPrimary
+            on_touch_move:
+                app.thickness = self.value
+                app.UpdateScreen()
+    
+    
+    GridLayout:
+        pos_hint: {"center_x": 0.5, "top": .29}
+        size_hint: (.96, 0.2)
+        rows: 1
+        cols: 2
+        spacing: 10
+        
+        CustomLabel:
+            id: lab_time
+            text: app.PrintTime(app.meat, app.doneness, 3.5)
+        CustomLabel:
+            id: lab_degrees
+            text: app.PrintDegrees(app.meat, app.doneness)
+
+
+    Label:
+        pos_hint: {"center_x": 0.5, "bottom": 0}
+        size_hint: (1, 0.05)
+        text: "by iamklager    "
+        text_size: self.size
+        font_size: self.height / 2
+        halign: "right"
+        valign: "center"
+        font_name: "Comic_Sans_MS"
+        canvas.before:
+            Color:
+                rgba: app.colPrimary
+            Rectangle:
+                pos: self.pos
+                size: self.size
+    
+    
