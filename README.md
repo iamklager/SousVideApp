@@ -10,5 +10,5 @@ The times and temperatures shown in this app are only rough estimations and offi
 
 <p align = "center">
   <img src = "https://github.com/iamklager/SousVideApp/raw/main/.github/screenshot_1.jpg" width = "400" />
-  <img src = "https://github.com/iamklager/SousVideApp/raw/main/.github/screenshot_2.jpg" width = "400" />
+  <img src = "https://github.com/iamklager/SousVideApp/raw/main/.github/screenshot_2.jpeg" width = "400" />
 </p>
