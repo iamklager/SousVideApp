@@ -78,7 +78,6 @@ FloatLayout:
             on_press:
                 app.meat = self.text
                 app.UpdateScreen()
-
         CustomToggleButton:
             text: "Beef"
             group: "meat"
@@ -152,7 +151,7 @@ FloatLayout:
             min: 1
             max: 6
             value: 3.5
-            step: .5
+            step: .25
             value_track: True
             value_track_color: app.colPrimary
             on_touch_move:
